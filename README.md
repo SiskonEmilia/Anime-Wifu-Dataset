@@ -1,5 +1,7 @@
 # Anime Face Dataset
 
+![Sample](assets/preview.png)
+
 This is a tool kit to generate a dataset of anime faces. With default setting, over 8000 image samples will be generated. This dataset contains no meta info itself, but you can use tools, such as Illustration2Vec[1], to estimate by yourself. This dataset is a edited version of Jin, Y.'s work[2].
 
 ## Why this dataset
