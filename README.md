@@ -29,14 +29,9 @@ After results are shown, save the html file to your work folder.
 
 ### Use spider to capture images from Getchu
 
-In this section, we aims to get images like this:
-
-<center> 
+To make you understand what we're doing better, we will raise the portrait of Naruse Shiroha (鳴瀨 しろは) in Game [*Summer Pocket*](http://www.getchu.com/soft.phtml?id=989183) as an example. In this section, we aims to get images like this:
 
 ![](assets/shiroha.jpg)
-<span style="font-weight:bold;">Figure 1. Naruse Shiroha (鳴瀨 しろは) in Game <span style="font-style:italic">Summer Pocket</span><br/> Retrieved from [http://www.getchu.com/soft.phtml?id=989183](http://www.getchu.com/soft.phtml?id=989183)</span>
-
-</center>
 
 After editing the path parameter in file to the html you saved in previous section, use our spider based on scrapy to capture all available images:
 
@@ -51,23 +46,13 @@ scrapy crawl gameurl
 
 With libcascade animeface, one can easily detect anime faces in images like below:
 
-<center> 
-
 ![](assets/detected.png)
-<span style="font-weight:bold;">Figure 2. Detected faces. Red box is 1.5x scaled.</span>
-
-</center>
 
 In some cases, the original box (shown as the blue one) that the algorithm gives is not large enough, so we apply a 1.5x scaling (shown as the red one) on it.
 
 After getting the box position, one can use opencv2 tools to crop it into face-only images like:
 
-<center> 
-
 ![](assets/cropped.png)
-<span style="font-weight:bold;">Figure 3. Cropped face-only image</span>
-
-</center>
 
 To do this, run code below after installing needed modules of libcascade animeface:
 
@@ -83,12 +68,7 @@ python face_detector.py source_dir output_dir
 
 As the cropped face image is too small, we need to use Wifu2x twice (or three times to gain >512px images) to reach our expectation. After doing so, you should get images like:
 
-<center> 
-
 ![](assets/result.png)
-<span style="font-weight:bold;">Figure 4. Result image</span>
-
-</center>
 
 Run command below in the `scaler/Wifu2x` folder to scaling your images:
 
