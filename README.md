@@ -83,4 +83,5 @@ python face_scaler.py source_dir target_dir
 ## References
 
 [1] Pre-trained model available on http://illustration2vec.net/
+
 [2] Jin, Y., Zhang, J., Li, M., Tian, Y., Zhu, H., & Fang, Z. (2017). Towards the Automatic Anime Characters Creation with Generative Adversarial Networks, 92(Summer 2017), 1–16. Retrieved from http://arxiv.org/abs/1708.05509
