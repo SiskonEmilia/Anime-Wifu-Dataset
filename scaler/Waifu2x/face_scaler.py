@@ -44,14 +44,13 @@ for dirpath, dirnames, filenames in pbar:
     tar_path  = os.path.join(target_dir, dirpath.split('/')[-1], filename)
     image = Image.open(src_path).convert('RGB')
     # Scale image twice
-    for t in range(2):
-      img_patches = img_splitter.split_img_tensor(image, scale_method=None, img_pad=0)
-      with torch.no_grad():
-        out = [model(i.cuda().half()) for i in img_patches]
-      out = img_splitter.merge_img_tensor(out)
-      # From (0, 1) to (0, 255)
-      if out.dim() == 4: out = out.squeeze(0)
-      out = out.mul_(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
-      image = Image.fromarray(out)
+    img_patches = img_splitter.split_img_tensor(image, scale_method=None, img_pad=0)
+    with torch.no_grad():
+      out = [model(i.cuda().half()) for i in img_patches]
+    out = img_splitter.merge_img_tensor(out)
+    # From (0, 1) to (0, 255)
+    if out.dim() == 4: out = out.squeeze(0)
+    out = out.mul_(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
+    image = Image.fromarray(out)
     image.save(tar_path)
     print(tar_path)

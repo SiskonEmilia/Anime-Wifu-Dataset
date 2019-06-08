@@ -4,6 +4,10 @@
 
 This is a tool kit to generate a dataset of anime faces. With default setting, over 8000 image samples will be generated. This dataset contains no meta info itself, but you can use tools, such as Illustration2Vec[1], to estimate by yourself. This dataset is a edited version of Jin, Y.'s work[2].
 
+**CAUTION: Too many times of scaling with tools like Wifu2x might introduce unexpected noise and 'fold lines' into images and blur outlines of characters, which leads to a bad result and even mode collapse if it is used to train a GAN model. To balance the quality and size of image, we highly recommend you NOT TO SCALE IMAGES FOR MORE THAN TWO TIMES.**
+
+**If you're just looking for some dataset with high-resolution (more than 128\*128px) anime faces, this project does not fit your requirement.**
+
 ## Why this dataset
 
 Previous attempts to generate high-quality anime face images with Generative Adversarial Network (GAN) always use spider-collected images from websites on which everyone could upload its art work. This leads to the unstable quality of and huge variation between images. On the contrary, CGs in video games enjoy stable and high-quality features, which means it fit our requirements very well. This dataset is made up from these images.
@@ -64,11 +68,11 @@ To do this, run code below after installing needed modules of libcascade animefa
 python face_detector.py source_dir output_dir
 ```
 
-### Use [Wifu2x](https://github.com/nagadomi/waifu2x) to scale faces to 256^2 (about 4x)
+### Use [Wifu2x](https://github.com/nagadomi/waifu2x) to scale faces to 128^2
 
 *Attention: Limited by our server, we choose to use [another version of Wifu2x](https://github.com/yu45020/Waifu2x). The result may vary due to the usage of different versions*
 
-As the cropped face image is too small, we need to use Wifu2x twice (or three times to gain >512px images) to reach our expectation. After doing so, you should get images like:
+As the cropped face image is too small, we need to use Wifu2x to reach our expectation. After doing so, you should get images like:
 
 ![](assets/result.png)
 
@@ -81,6 +85,14 @@ Run command below in the `scaler/Wifu2x` folder to scaling your images:
 # target_dir should be created before running
 python face_scaler.py source_dir target_dir
 ```
+
+## What if I scale it for too many times?
+
+To test the performance of [my Style-based GAN model](https://github.com/SiskonEmilia/StyleGAN-PyTorch), I used an edited version of this dataset, in which I scaled the face for three times rather than two, to train it. After over one GPU-week's training (on 2 Nvidia Tesla P100 GPUs), the result I got is unacceptable:
+
+![Bad result](assets/badresult.png)
+
+As my model could show its generated images periodically, I got to find that when the resolution is small (smaller than 256\*256 px), the result is nice and with diverse characteristics. As the size growing large, the style of images seems to be fixed and the detail looks quite wired and unnatural, which is highly different from the amazing result that Nvidia's and [Gwern Branwen's work](https://www.gwern.net/TWDNE#). Thus there're reasons for me to believe that too many times of scaling is what causes this unexpected result.
 
 ## References
 
