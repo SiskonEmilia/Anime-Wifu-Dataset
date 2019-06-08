@@ -92,7 +92,7 @@ To test the performance of [my Style-based GAN model](https://github.com/SiskonE
 
 ![Bad result](assets/badresult.png)
 
-As my model could show its generated images periodically, I got to find that when the resolution is small (smaller than 256\*256 px), the result is nice and with diverse characteristics. As the size growing large, the style of images seems to be fixed and the detail looks quite wired and unnatural, which is highly different from the amazing result that Nvidia's and [Gwern Branwen's work](https://www.gwern.net/TWDNE#). Thus there're reasons for me to believe that too many times of scaling is what causes this unexpected result.
+As my model could show its generated images periodically, I got to find that when the resolution is small (smaller than 256\*256 px), the result is nice and with diverse characteristics. As the size growing large, the style of images seems to be fixed and the detail looks quite wired and unnatural, which is highly different from Nvidia's and [Gwern Branwen's](https://www.gwern.net/TWDNE#) amazing work. Thus there're reasons for me to believe that too many times of scaling is what causes this unexpected result.
 
 ## References
 
